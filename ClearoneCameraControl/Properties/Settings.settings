@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ClearoneCameraControl.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CameraDnsName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">asmc-camera</Value>
+    </Setting>
+    <Setting Name="Preset1Name" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1 - Pulpit</Value>
+    </Setting>
+    <Setting Name="Preset2Name" Type="System.String" Scope="User">
+      <Value Profile="(Default)">2 - Singing</Value>
+    </Setting>
+    <Setting Name="Preset3Name" Type="System.String" Scope="User">
+      <Value Profile="(Default)">3 - Overview</Value>
+    </Setting>
+    <Setting Name="Preset4Name" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
