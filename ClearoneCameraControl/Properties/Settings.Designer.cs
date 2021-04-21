@@ -82,5 +82,29 @@ namespace ClearoneCameraControl.Properties {
                 this["Preset4Name"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files\\VideoLAN\\VLC")]
+        public string VLCInstallPath {
+            get {
+                return ((string)(this["VLCInstallPath"]));
+            }
+            set {
+                this["VLCInstallPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int CameraStreamQuality {
+            get {
+                return ((int)(this["CameraStreamQuality"]));
+            }
+            set {
+                this["CameraStreamQuality"] = value;
+            }
+        }
     }
 }

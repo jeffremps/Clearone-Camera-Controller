@@ -10,7 +10,7 @@ namespace ClearoneCameraControl
 {
     public partial class CameraControl : Form
     {
-        private readonly HttpClient httpClient = new HttpClient();
+        private readonly HttpClient _httpClient = new();
 
         public CameraControl()
         {
@@ -19,24 +19,31 @@ namespace ClearoneCameraControl
 
             TopMost = true;
 
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", "YWRtaW46QVNNQ2h1cmNoNENocmlz");
-            httpClient.DefaultRequestHeaders.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
-            httpClient.DefaultRequestHeaders.Add("Referer", $"http://{Settings.Default.CameraDnsName}/menu_mini.html");
-            httpClient.DefaultRequestHeaders.Add("Accept-Language", "en-US,en;q=0.9");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", "YWRtaW46QVNNQ2h1cmNoNENocmlz");
+            _httpClient.DefaultRequestHeaders.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
+            _httpClient.DefaultRequestHeaders.Add("Referer", $"http://{Settings.Default.CameraDnsName}/menu_mini.html");
+            _httpClient.DefaultRequestHeaders.Add("Accept-Language", "en-US,en;q=0.9");
         }
 
         private void SetPresetLabels()
         {
-            FormHelper.SetupPresetButton(Preset1Button, Settings.Default.Preset1Name);
-            FormHelper.SetupPresetButton(Preset2Button, Settings.Default.Preset2Name);
-            FormHelper.SetupPresetButton(Preset3Button, Settings.Default.Preset3Name);
-            FormHelper.SetupPresetButton(Preset4Button, Settings.Default.Preset4Name);
+            FormHelper.SetupPresetButton(Preset1Button, Preset1MenuItem, Settings.Default.Preset1Name);
+            FormHelper.SetupPresetButton(Preset2Button, Preset2MenuItem, Settings.Default.Preset2Name);
+            FormHelper.SetupPresetButton(Preset3Button, Preset3MenuItem, Settings.Default.Preset3Name);
+            FormHelper.SetupPresetButton(Preset4Button, Preset4MenuItem, Settings.Default.Preset4Name);
         }
 
         private void PresetButton_Click(object sender, EventArgs e)
         {
-            var button = sender as Button;
-            CallCameraPreset(Convert.ToInt32(button.Tag), button.Text);
+            switch (sender)
+            {
+                case Button button:
+                    CallCameraPreset(Convert.ToInt32(button.Tag), button.Text);
+                    break;
+                case ToolStripMenuItem { Visible: true } menuItem:
+                    CallCameraPreset(Convert.ToInt32(menuItem.Tag), menuItem.Text);
+                    break;
+            }
         }
 
         private void CallCameraPreset(int presetNumber, string presetName)
@@ -44,7 +51,7 @@ namespace ClearoneCameraControl
             Cursor.Current = Cursors.WaitCursor;
             try
             {
-                var result = httpClient.GetAsync($"http://{Settings.Default.CameraDnsName}/cgi-bin/ptzctrl.cgi?ptzcmd&poscall&{presetNumber}")?.Result;
+                var result = _httpClient.GetAsync($"http://{Settings.Default.CameraDnsName}/cgi-bin/ptzctrl.cgi?ptzcmd&poscall&{presetNumber}")?.Result;
 
                 if (result.IsSuccessStatusCode)
                 {
@@ -78,48 +85,61 @@ namespace ClearoneCameraControl
             LoadPreviewStream();
         }
 
-        private void LoadCameraPreviewButton_Click(object sender, EventArgs e)
-        {
-            LoadPreviewStream();
-        }
-
         private void LoadPreviewStream()
         {
-            CameraMoveStatus.Text = $"Loading camera preview...";
-            CameraPreview.Play($"rtsp://{Settings.Default.CameraDnsName}:554/2");
+            CameraMoveStatus.Text = "Loading camera preview...";
             CameraPreview.Audio.IsMute = true;
+            CameraPreview.Play($"rtsp://{Settings.Default.CameraDnsName}:554/{Settings.Default.CameraStreamQuality}");
             CameraPreview.EncounteredError += CameraPreview_EncounteredError;
             CameraPreview.Playing += CameraPreview_OnPlaying;
-            CameraPreview.Buffering += CameraPreview_Buffering;
             CameraPreview.Stopped += CameraPreview_Stopped;
         }
 
         private void CameraPreview_Stopped(object sender, Vlc.DotNet.Core.VlcMediaPlayerStoppedEventArgs e)
         {
             HandleError("Video Preview has stopped");
-            CameraMoveStatus.Text = $"WARNING: Video preview has stopped";
+            CameraMoveStatus.Text = "WARNING: Video preview has stopped";
         }
 
         private void CameraPreview_Buffering(object sender, Vlc.DotNet.Core.VlcMediaPlayerBufferingEventArgs e)
         {
             HandleError("Video Preview is buffering");
-            CameraMoveStatus.Text = $"WARNING: Video preview is buffering";
+            CameraMoveStatus.Text = "WARNING: Video preview is buffering";
         }
 
         private void CameraPreview_OnPlaying(object sender, Vlc.DotNet.Core.VlcMediaPlayerPlayingEventArgs e)
         {
             CameraMoveStatus.Text = "";
+
+            CameraPreview.Buffering -= CameraPreview_Buffering;
+            CameraPreview.Buffering += CameraPreview_Buffering;
         }
 
         private void CameraPreview_EncounteredError(object sender, Vlc.DotNet.Core.VlcMediaPlayerEncounteredErrorEventArgs e)
         {
             HandleError("Video Preview Error");
-            CameraMoveStatus.Text = $"ERROR: Video preview failed to load";
+            CameraMoveStatus.Text = "ERROR: Video preview failed to load";
         }
 
         private void ConfigurationMenuItem_Click(object sender, EventArgs e)
         {
+            using var configurationEditor = new ConfigurationEditor();
+            configurationEditor.ShowDialog();
+        }
 
+        private void CameraPreview_VlcLibDirectoryNeeded(object sender, Vlc.DotNet.Forms.VlcLibDirectoryNeededEventArgs e)
+        {
+            e.VlcLibDirectory = new DirectoryInfo(Settings.Default.VLCInstallPath);
+        }
+
+        private void CameraControl_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (CameraPreview.IsPlaying)
+            {
+                CameraPreview.Stop();
+            }
+
+            _httpClient?.Dispose();
         }
     }
 }

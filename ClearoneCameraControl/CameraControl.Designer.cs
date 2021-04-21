@@ -40,6 +40,11 @@ namespace ClearoneCameraControl
             this.Menu = new System.Windows.Forms.MenuStrip();
             this.FileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ConfigurationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PresetsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Preset1MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Preset2MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Preset3MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Preset4MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CameraStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CameraPreview)).BeginInit();
             this.Menu.SuspendLayout();
@@ -106,8 +111,9 @@ namespace ClearoneCameraControl
             this.CameraPreview.Spu = -1;
             this.CameraPreview.TabIndex = 5;
             this.CameraPreview.Text = "vlcControl1";
-            this.CameraPreview.VlcLibDirectory = ((System.IO.DirectoryInfo)(resources.GetObject("CameraPreview.VlcLibDirectory")));
+            this.CameraPreview.VlcLibDirectory = null;
             this.CameraPreview.VlcMediaplayerOptions = null;
+            this.CameraPreview.VlcLibDirectoryNeeded += new System.EventHandler<Vlc.DotNet.Forms.VlcLibDirectoryNeededEventArgs>(this.CameraPreview_VlcLibDirectoryNeeded);
             // 
             // Preset4Button
             // 
@@ -123,13 +129,13 @@ namespace ClearoneCameraControl
             // Menu
             // 
             this.Menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.FileMenuItem});
+            this.FileMenuItem,
+            this.PresetsMenuItem});
             this.Menu.Location = new System.Drawing.Point(0, 0);
             this.Menu.Name = "Menu";
             this.Menu.Size = new System.Drawing.Size(284, 24);
             this.Menu.TabIndex = 7;
             this.Menu.Text = "menuStrip1";
-            this.Menu.Visible = false;
             // 
             // FileMenuItem
             // 
@@ -145,6 +151,53 @@ namespace ClearoneCameraControl
             this.ConfigurationMenuItem.Size = new System.Drawing.Size(148, 22);
             this.ConfigurationMenuItem.Text = "Configuration";
             this.ConfigurationMenuItem.Click += new System.EventHandler(this.ConfigurationMenuItem_Click);
+            // 
+            // PresetsMenuItem
+            // 
+            this.PresetsMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Preset1MenuItem,
+            this.Preset2MenuItem,
+            this.Preset3MenuItem,
+            this.Preset4MenuItem});
+            this.PresetsMenuItem.Name = "PresetsMenuItem";
+            this.PresetsMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.PresetsMenuItem.Text = "Presets";
+            // 
+            // Preset1MenuItem
+            // 
+            this.Preset1MenuItem.Name = "Preset1MenuItem";
+            this.Preset1MenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.Preset1MenuItem.Size = new System.Drawing.Size(134, 22);
+            this.Preset1MenuItem.Tag = "1";
+            this.Preset1MenuItem.Text = "Preset 1";
+            this.Preset1MenuItem.Click += new System.EventHandler(this.PresetButton_Click);
+            // 
+            // Preset2MenuItem
+            // 
+            this.Preset2MenuItem.Name = "Preset2MenuItem";
+            this.Preset2MenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
+            this.Preset2MenuItem.Size = new System.Drawing.Size(134, 22);
+            this.Preset2MenuItem.Tag = "2";
+            this.Preset2MenuItem.Text = "Preset 2";
+            this.Preset2MenuItem.Click += new System.EventHandler(this.PresetButton_Click);
+            // 
+            // Preset3MenuItem
+            // 
+            this.Preset3MenuItem.Name = "Preset3MenuItem";
+            this.Preset3MenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
+            this.Preset3MenuItem.Size = new System.Drawing.Size(134, 22);
+            this.Preset3MenuItem.Tag = "3";
+            this.Preset3MenuItem.Text = "Preset 3";
+            this.Preset3MenuItem.Click += new System.EventHandler(this.PresetButton_Click);
+            // 
+            // Preset4MenuItem
+            // 
+            this.Preset4MenuItem.Name = "Preset4MenuItem";
+            this.Preset4MenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
+            this.Preset4MenuItem.Size = new System.Drawing.Size(134, 22);
+            this.Preset4MenuItem.Tag = "4";
+            this.Preset4MenuItem.Text = "Preset 4";
+            this.Preset4MenuItem.Click += new System.EventHandler(this.PresetButton_Click);
             // 
             // CameraControl
             // 
@@ -164,6 +217,7 @@ namespace ClearoneCameraControl
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Camera Control";
             this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CameraControl_FormClosing);
             this.Shown += new System.EventHandler(this.CameraControl_Shown);
             this.CameraStatus.ResumeLayout(false);
             this.CameraStatus.PerformLayout();
@@ -187,6 +241,11 @@ namespace ClearoneCameraControl
         private System.Windows.Forms.MenuStrip Menu;
         private System.Windows.Forms.ToolStripMenuItem FileMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ConfigurationMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem PresetsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Preset1MenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Preset2MenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Preset3MenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Preset4MenuItem;
     }
 }
 

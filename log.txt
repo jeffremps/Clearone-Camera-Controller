@@ -1,0 +1,65 @@
+2021-02-25 15:33:51.672 -06:00 [INF] MSBuild registered from C:\Program Files\dotnet\sdk\5.0.103\
+2021-02-25 15:33:51.758 -06:00 [INF] Registered 1 extensions:
+	Default extension
+2021-02-25 15:33:55.380 -06:00 [INF] Initializing upgrade step Select an entrypoint
+2021-02-25 15:33:55.383 -06:00 [INF] Setting entrypoint to only project in solution: C:\Development\Clearone-Camera-Controller\ClearoneCameraControl\ClearoneCameraControl.csproj
+2021-02-25 15:33:55.386 -06:00 [INF] Initializing upgrade step Select project to upgrade
+2021-02-25 15:33:55.388 -06:00 [INF] Setting only project in solution as the current project: C:\Development\Clearone-Camera-Controller\ClearoneCameraControl\ClearoneCameraControl.csproj
+2021-02-25 15:33:55.389 -06:00 [INF] Initializing upgrade step Back up project
+2021-02-25 15:34:05.241 -06:00 [INF] Skipping upgrade step Back up project
+2021-02-25 15:34:05.242 -06:00 [INF] Upgrade step Back up project skipped
+2021-02-25 15:34:07.692 -06:00 [INF] Initializing upgrade step Convert project file to SDK style
+2021-02-25 15:34:14.882 -06:00 [INF] Skipping upgrade step Convert project file to SDK style
+2021-02-25 15:34:14.883 -06:00 [INF] Upgrade step Convert project file to SDK style skipped
+2021-02-25 15:34:17.540 -06:00 [INF] Initializing upgrade step Update TFM
+2021-02-25 15:34:45.701 -06:00 [INF] Saving upgrade progress file at C:\Development\Clearone-Camera-Controller\.upgrade-assistant
+2021-02-25 15:34:48.058 -06:00 [INF] MSBuild registered from C:\Program Files\dotnet\sdk\5.0.103\
+2021-02-25 15:34:48.103 -06:00 [INF] Registered 1 extensions:
+	Default extension
+2021-02-25 15:34:49.920 -06:00 [INF] Loading upgrade progress file at C:\Development\Clearone-Camera-Controller\.upgrade-assistant
+2021-02-25 15:34:51.295 -06:00 [INF] Initializing upgrade step Back up project
+2021-02-25 15:34:56.478 -06:00 [INF] Skipping upgrade step Back up project
+2021-02-25 15:34:56.479 -06:00 [INF] Upgrade step Back up project skipped
+2021-02-25 15:34:57.699 -06:00 [INF] Initializing upgrade step Convert project file to SDK style
+2021-02-25 15:34:59.701 -06:00 [INF] Applying upgrade step Convert project file to SDK style
+2021-02-25 15:34:59.703 -06:00 [INF] Converting project file format with try-convert
+2021-02-25 15:35:01.223 -06:00 [INF] [try-convert] C:\Development\Clearone-Camera-Controller\ClearoneCameraControl\ClearoneCameraControl.csproj contains an App.config file. App.config is replaced by appsettings.json in .NET Core. You will need to delete App.config and migrate to appsettings.json if it's applicable to your project.
+2021-02-25 15:35:04.362 -06:00 [INF] [try-convert] Conversion complete!
+2021-02-25 15:35:05.449 -06:00 [INF] Project file converted successfully! The project may require additional changes to build successfully against the new .NET target.
+2021-02-25 15:35:08.866 -06:00 [INF] Upgrade step Convert project file to SDK style applied successfully
+2021-02-25 15:35:41.683 -06:00 [INF] Initializing upgrade step Update TFM
+2021-02-25 15:35:45.146 -06:00 [INF] Applying upgrade step Update TFM
+2021-02-25 15:35:51.242 -06:00 [INF] Upgrade step Update TFM applied successfully
+2021-02-25 15:36:07.769 -06:00 [INF] Initializing upgrade step Update NuGet packages
+2021-02-25 15:36:09.735 -06:00 [INF] Marking package Vlc.DotNet.Core for removal because it appears to be a transitive dependency
+2021-02-25 15:36:09.738 -06:00 [INF] Marking package Vlc.DotNet.Core.Interops for removal because it appears to be a transitive dependency
+2021-02-25 15:36:10.480 -06:00 [INF] Reference to .NET Upgrade Assistant analyzer package (Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers, version 0.2.212405) needs added
+2021-02-25 15:36:10.759 -06:00 [INF] Adding Microsoft.Windows.Compatibility 5.0.2
+2021-02-25 15:36:10.763 -06:00 [INF] Packages to be removed:
+Vlc.DotNet.Core, Version=3.1.0
+Vlc.DotNet.Core.Interops, Version=3.1.0
+2021-02-25 15:36:10.763 -06:00 [INF] Packages to be addded:
+Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers, Version=0.2.212405
+Microsoft.Windows.Compatibility, Version=5.0.2
+2021-02-25 15:36:14.522 -06:00 [INF] Applying upgrade step Update NuGet packages
+2021-02-25 15:36:14.530 -06:00 [INF] Removing outdated package reference: Vlc.DotNet.Core, Version=3.1.0
+2021-02-25 15:36:14.532 -06:00 [INF] Removing outdated package reference: Vlc.DotNet.Core.Interops, Version=3.1.0
+2021-02-25 15:36:14.535 -06:00 [INF] Adding package reference: Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers, Version=0.2.212405
+2021-02-25 15:36:14.541 -06:00 [INF] Adding package reference: Microsoft.Windows.Compatibility, Version=5.0.2
+2021-02-25 15:36:46.680 -06:00 [INF] Marking package System.Data.DataSetExtensions for removal because it appears to be a transitive dependency
+2021-02-25 15:36:46.827 -06:00 [INF] Removing outdated package reference: System.Data.DataSetExtensions, Version=4.5.0
+2021-02-25 15:36:50.086 -06:00 [INF] Upgrade step Update NuGet packages applied successfully
+2021-02-25 15:36:57.108 -06:00 [INF] Initializing upgrade step Add template files
+2021-02-25 15:36:57.133 -06:00 [INF] 0 expected template items needed
+2021-02-25 15:36:57.134 -06:00 [INF] Initializing upgrade step Upgrade app config files
+2021-02-25 15:36:57.158 -06:00 [INF] Found 0 app settings for upgrade: 
+2021-02-25 15:36:57.167 -06:00 [INF] 0 web page namespace imports need upgraded: 
+2021-02-25 15:36:57.169 -06:00 [INF] Initializing upgrade step Update C# source
+2021-02-25 15:36:59.562 -06:00 [INF] Initializing upgrade step Move to next project
+2021-02-25 15:37:11.594 -06:00 [INF] Applying upgrade step Move to next project
+2021-02-25 15:37:11.595 -06:00 [INF] Upgrade step Move to next project applied successfully
+2021-02-25 15:37:13.554 -06:00 [INF] Initializing upgrade step Finalize Solution
+2021-02-25 15:37:19.682 -06:00 [INF] Applying upgrade step Finalize Solution
+2021-02-25 15:37:19.683 -06:00 [INF] Upgrade step Finalize Solution applied successfully
+2021-02-25 15:37:21.993 -06:00 [INF] Upgrade has completed. Please review any changes.
+2021-02-25 15:37:21.995 -06:00 [INF] Saving upgrade progress file at C:\Development\Clearone-Camera-Controller\.upgrade-assistant
